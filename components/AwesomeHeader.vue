@@ -12,7 +12,7 @@
       <v-list>
         <v-list-tile v-for="(item, i) in drawerItems" :key="i" :to="item.to" router exact>
           <v-list-tile-action>
-            <v-icon v-text="item.icon"/>
+            <img class="icon" :src="item.icon" :alt="item.title"/>
           </v-list-tile-action>
           <v-list-tile-content>
             <v-list-tile-title v-text="item.title"/>
@@ -32,27 +32,27 @@ export default {
       drawer: false,
       drawerItems: [
         {
-          icon: 'radio_button_unchecked',
+          icon: 'ic_group.svg',
           title: 'My ID',
           to: '/user'
         },
         {
-          icon: 'radio_button_unchecked',
+          icon: 'ic_package.svg',
           title: 'Pickup Status',
-          to: '/items'
+          to: '/status'
         },
         {
-          icon: 'radio_button_unchecked',
+          icon: 'ic_clock.svg',
           title: 'Schedule',
           to: '/'
         },
         {
-          icon: 'radio_button_unchecked',
+          icon: 'ic_map.svg',
           title: 'Event Site Map',
           to: '/'
         },
         {
-          icon: 'radio_button_unchecked',
+          icon: 'ic_message.svg',
           title: 'Inquiry',
           to: '/'
         }
@@ -66,5 +66,9 @@ export default {
 .menu.material-icons {
   transform: scaleX(-1);
   filter: FlipH;
+}
+
+.icon {
+  height: 24px;
 }
 </style>

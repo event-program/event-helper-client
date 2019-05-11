@@ -4,11 +4,12 @@
       <h1 class="description">Easy to Manage Your Event</h1>
     </header>
     <section class="form-wrapper">
-      <h2>Login</h2>
+      <h2 class="form__title">Login</h2>
+      <nuxt-link class="forgot-pw-text" to="forgot">Forgot your password</nuxt-link>
       <v-text-field color="white" dark label="ID"/>
       <v-text-field color="white" dark label="Password"/>
-      <v-btn color="#707070" dark depressed large>Login</v-btn>
-      <nuxt-link class="forgot-pw-text" to="forgot">Forgot your password</nuxt-link>
+      <v-btn color="#ff3f3d" dark depressed large>Login</v-btn>
+      <v-btn color="#141414" dark depressed large>Signup</v-btn>
     </section>
     <nav>
       <div class="link-wrapper">
@@ -32,7 +33,7 @@ export default {
 .full-screen {
   width: 100%;
   height: 100%;
-  background: url(/img_backgorund.png) no-repeat bottom;
+  background: url(/client/img_backgorund.png) no-repeat bottom;
   background-size: cover;
 }
 
@@ -65,6 +66,10 @@ export default {
   bottom: 168px;
   width: 360px;
   z-index: 1;
+}
+
+.form__title {
+  display: inline-block;
 }
 
 h2 {

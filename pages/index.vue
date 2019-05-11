@@ -4,7 +4,7 @@
       <h1 class="title">Upcoming Events</h1>
       <section class="cards">
         <v-card v-for="event in events.slice(0, 4)" :key="event.id" class="card" width="240">
-          <v-img src="https://cdn.vuetifyjs.com/images/cards/desert.jpg"/>
+          <v-img :src="event.image" alt="Event Image"/>
           <v-card-text>
             <p class="card__title">{{ event.name }}</p>
             <p class="card__content">{{ event.time }}</p>
@@ -21,7 +21,7 @@
       <h1 class="title">Past Events</h1>
       <section class="cards">
         <v-card v-for="event in events.slice(4)" :key="event.id" class="card" width="240">
-          <v-img src="https://cdn.vuetifyjs.com/images/cards/desert.jpg" alt="Event Image"/>
+          <v-img :src="event.image" alt="Event Image"/>
           <v-card-text>
             <p class="card__title">{{ event.name }}</p>
             <p class="card__content">{{ event.time }}</p>
@@ -36,11 +36,11 @@
       </section>
     </v-container>
     <v-slide-y-transition>
-      <section v-show="clickedEvent" class="window">
+      <section v-if="clickedEvent" class="window">
         <header class="window__header">
           <v-container>
             <v-btn icon @click="clickedEvent = null">
-              <v-icon>close</v-icon>
+              <v-icon>keyboard_arrow_left</v-icon>
             </v-btn>
             <div class="event">
               <img
@@ -68,7 +68,12 @@
             <v-tabs-items v-model="tab">
               <v-tab-item value="check-participants"></v-tab-item>
               <v-tab-item class="cards" value="alert-participants">
-                <v-card v-for="alert in events[0].alerts" :key="alert.id" class="card" width="240">
+                <v-card
+                  v-for="alert in clickedEvent.alerts"
+                  :key="alert.id"
+                  class="card"
+                  width="240"
+                >
                   <v-card-text>
                     <span class="label">{{ alert.category }}</span>
                     <p class="card__title card__title--mono">{{ alert.title }}</p>
@@ -80,10 +85,167 @@
                   </v-card-text>
                 </v-card>
                 <v-card class="card card--create-alert" color="grey lighten-2" flat width="240">
-                  <v-icon>add</v-icon>
+                  <v-btn icon @click="alertWindowVisible = true">
+                    <v-icon>add</v-icon>
+                  </v-btn>
                 </v-card>
               </v-tab-item>
             </v-tabs-items>
+          </v-container>
+        </section>
+      </section>
+    </v-slide-y-transition>
+    <v-slide-y-transition>
+      <section v-show="alertWindowVisible" class="horizontal-window">
+        <header class="horizontal-window__header">
+          <v-container>
+            <v-btn icon @click="alertWindowVisible = false">
+              <v-icon>close</v-icon>
+            </v-btn>
+            <section class="ma-3">
+              <h1 class="event__name">Fill Your Alert Message</h1>
+              <v-select
+                v-model="requestType"
+                color="#7676e8"
+                :items="requestTypes"
+                label="Choose type of your request."
+                outline
+              />
+              <v-text-field color="#7676e8" label="Title"/>
+              <v-layout>
+                <v-flex sm6 pr-1>
+                  <v-menu
+                    ref="startDatePicker"
+                    v-model="startDatePickerVisible"
+                    :close-on-content-click="false"
+                    :nudge-right="40"
+                    :return-value.sync="startDate"
+                    lazy
+                    transition="scale-transition"
+                    offset-y
+                    full-width
+                    min-width="290px"
+                  >
+                    <template v-slot:activator="{ on }">
+                      <v-text-field v-model="startDate" label="Start Date" readonly v-on="on"/>
+                    </template>
+                    <v-date-picker v-model="startDate" no-title scrollable>
+                      <v-spacer/>
+                      <v-btn flat color="#7676e8" @click="startDatePickerVisible = false">Cancel</v-btn>
+                      <v-btn flat color="#7676e8" @click="$refs.startDatePicker.save(startDate)">OK</v-btn>
+                    </v-date-picker>
+                  </v-menu>
+                </v-flex>
+                <v-flex xs6 pl-1>
+                  <v-menu
+                    ref="startTimePicker"
+                    v-model="startTimePickerVisible"
+                    :close-on-content-click="false"
+                    :nudge-right="40"
+                    :return-value.sync="startTime"
+                    lazy
+                    transition="scale-transition"
+                    offset-y
+                    full-width
+                    max-width="290px"
+                    min-width="290px"
+                  >
+                    <template v-slot:activator="{ on }">
+                      <v-text-field v-model="startTime" label="Start Time" readonly v-on="on"/>
+                    </template>
+                    <v-time-picker
+                      v-if="startTimePickerVisible"
+                      v-model="startTime"
+                      full-width
+                      @click:minute="$refs.startTimePicker.save(startTime)"
+                    />
+                  </v-menu>
+                </v-flex>
+              </v-layout>
+              <v-layout>
+                <v-flex sm6 pr-1>
+                  <v-menu
+                    ref="endDatePicker"
+                    v-model="endDatePickerVisible"
+                    :close-on-content-click="false"
+                    :nudge-right="40"
+                    :return-value.sync="endDate"
+                    lazy
+                    transition="scale-transition"
+                    offset-y
+                    full-width
+                    min-width="290px"
+                  >
+                    <template v-slot:activator="{ on }">
+                      <v-text-field v-model="endDate" label="End Date" readonly v-on="on"/>
+                    </template>
+                    <v-date-picker v-model="endDate" no-title scrollable>
+                      <v-spacer/>
+                      <v-btn flat color="#7676e8" @click="endDatePickerVisible = false">Cancel</v-btn>
+                      <v-btn flat color="#7676e8" @click="$refs.endDatePicker.save(endDate)">OK</v-btn>
+                    </v-date-picker>
+                  </v-menu>
+                </v-flex>
+                <v-flex xs6 pl-1>
+                  <v-menu
+                    ref="endTimePicker"
+                    v-model="endTimePickerVisible"
+                    :close-on-content-click="false"
+                    :nudge-right="40"
+                    :return-value.sync="endTime"
+                    lazy
+                    transition="scale-transition"
+                    offset-y
+                    full-width
+                    max-width="290px"
+                    min-width="290px"
+                  >
+                    <template v-slot:activator="{ on }">
+                      <v-text-field v-model="endTime" label="End Time" readonly v-on="on"/>
+                    </template>
+                    <v-time-picker
+                      v-if="endTimePickerVisible"
+                      v-model="endTime"
+                      full-width
+                      @click:minute="$refs.endTimePicker.save(endTime)"
+                    />
+                  </v-menu>
+                </v-flex>
+              </v-layout>
+              <v-text-field color="#7676e8" label="Location"/>
+              <v-textarea color="#7676e8" label="Your Messages"/>
+            </section>
+            <v-btn color="#7676e8" dark depressed large>Send</v-btn>
+          </v-container>
+        </header>
+        <section class="horizontal-window__content">
+          <v-container>
+            <section class="ma-3">
+              <h1 class="event__name">Choose Recipients</h1>
+              <v-data-table
+                v-model="selectedParticipants"
+                :headers="headers"
+                :items="desserts"
+                :search="search"
+                hide-actions
+                select-all
+              >
+                <template v-slot:items="props">
+                  <td>
+                    <v-checkbox v-model="props.selected" primary hide-details></v-checkbox>
+                  </td>
+                  <td>{{ props.item.name }}</td>
+                  <td>{{ props.item.calories }}</td>
+                </template>
+                <template v-slot:no-results>
+                  <v-alert
+                    :value="true"
+                    color="error"
+                    icon="warning"
+                  >Your search for "{{ search }}" found no results.</v-alert>
+                </template>
+              </v-data-table>
+            </section>
           </v-container>
         </section>
       </section>
@@ -124,8 +286,25 @@ export default {
     return {
       tab: 'check-participants',
       clickedEvent: null,
+      alertWindowVisible: false,
+      requestType: '',
+      requestTypes: ['Announcement', 'Pickup', 'Registration', 'ETC'],
+      startDatePickerVisible: false,
+      startDate: null,
+      startTimePickerVisible: false,
+      startTime: null,
+      endDatePickerVisible: false,
+      endDate: null,
+      endTimePickerVisible: false,
+      endTime: null,
+      headers: [
+        { text: 'Name', value: 'name' },
+        { text: 'Phone', value: 'phone' }
+      ],
+      selectedParticipants: [],
       events: [
         {
+          image: 'https://cdn.vuetifyjs.com/images/cards/desert.jpg',
           name: 'JunctionX Seoul',
           time: '10 May at 9:00 AM to 12 May at 6:00 PM, 2019',
           place: 'Y-Valley',
@@ -268,6 +447,29 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.horizontal-window {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 120px;
+  bottom: 0;
+  background-color: #f8f8f8;
+  flex-direction: row;
+}
+
+.horizontal-window__header {
+  width: 50%;
+  height: 100%;
+  background-color: white;
+}
+
+.horizontal-window__content {
+  width: 50%;
+  height: 100%;
+  margin-top: 48px;
 }
 
 nav {
