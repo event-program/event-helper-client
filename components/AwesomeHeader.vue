@@ -38,7 +38,7 @@ export default {
         },
         {
           icon: 'radio_button_unchecked',
-          title: 'Receiving Status',
+          title: 'Pickup Status',
           to: '/items'
         },
         {

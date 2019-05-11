@@ -4,8 +4,8 @@ const NAME = 'Magpy'
 const DESCRIPTION = 'Magpy: An Event Manager Software'
 const HOST_URL = 'https://magpy-project.github.io';
 const BASE_URL = '/client/';
-const THEME_COLOR = '';
-const BACKGROUND_COLOR = '';
+const THEME_COLOR = '#ff3f3d';
+const BACKGROUND_COLOR = '#fff';
 
 module.exports = {
   css: [

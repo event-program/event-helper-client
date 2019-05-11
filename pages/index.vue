@@ -9,124 +9,146 @@
             <p class="card__title">{{ event.name }}</p>
             <p class="card__content">{{ event.time }}</p>
             <div class="card__action">
-              <div class="button">
-                <img class="button__icon" src="/ic_place.svg" alt="Place">
-                <span class="button__name">{{ event.place }}</span>
-              </div>
-              <v-icon>keyboard_arrow_right</v-icon>
+              <icon-tile icon="ic_place.svg" :content="event.place"/>
+              <v-btn icon @click="clickedEvent = event">
+                <v-icon>keyboard_arrow_right</v-icon>
+              </v-btn>
             </div>
           </v-card-text>
         </v-card>
       </section>
+      <br>
       <h1 class="title">Past Events</h1>
       <section class="cards">
         <v-card v-for="event in events.slice(4)" :key="event.id" class="card" width="240">
-          <v-img src="https://cdn.vuetifyjs.com/images/cards/desert.jpg"/>
+          <v-img src="https://cdn.vuetifyjs.com/images/cards/desert.jpg" alt="Event Image"/>
           <v-card-text>
             <p class="card__title">{{ event.name }}</p>
             <p class="card__content">{{ event.time }}</p>
             <div class="card__action">
-              <div class="button">
-                <img class="button__icon" src="/ic_place.svg" alt="Place">
-                <span class="button__name">{{ event.place }}</span>
-              </div>
-              <v-icon>keyboard_arrow_right</v-icon>
+              <icon-tile icon="ic_place.svg" :content="event.place"/>
+              <v-btn icon @click="clickedEvent = event">
+                <v-icon>keyboard_arrow_right</v-icon>
+              </v-btn>
             </div>
           </v-card-text>
         </v-card>
       </section>
     </v-container>
+    <v-slide-y-transition>
+      <section v-show="clickedEvent" class="window">
+        <header class="window__header">
+          <v-container>
+            <v-btn icon @click="clickedEvent = null">
+              <v-icon>close</v-icon>
+            </v-btn>
+            <div class="event">
+              <img
+                class="event__image"
+                src="https://cdn.vuetifyjs.com/images/cards/desert.jpg"
+                alt="Event Image"
+              >
+              <div class="event__content">
+                <h1 class="event__name">JunctionX Seoul</h1>
+                <icon-tile
+                  icon="ic_clock.svg"
+                  content="10 May at 9:00 AM to 12 May at 18:00 PM, 2019"
+                />
+                <icon-tile icon="ic_place.svg" content="Y-Valley, Yongsan-gu, Seoul, Korea"/>
+              </div>
+            </div>
+            <v-tabs v-model="tab" class="tabs" grow slider-color="#ff3f3d">
+              <v-tab href="#check-participants">Check Participants</v-tab>
+              <v-tab href="#alert-participants">Alert Participants</v-tab>
+            </v-tabs>
+          </v-container>
+        </header>
+        <section class="window__content">
+          <v-container>
+            <v-tabs-items v-model="tab">
+              <v-tab-item value="check-participants"></v-tab-item>
+              <v-tab-item class="cards" value="alert-participants">
+                <v-card v-for="alert in events[0].alerts" :key="alert.id" class="card" width="240">
+                  <v-card-text>
+                    <span class="label">{{ alert.category }}</span>
+                    <p class="card__title card__title--mono">{{ alert.title }}</p>
+                    <p class="card__content card__content--mono">{{ alert.content }}</p>
+                    <div class="card__action">
+                      <icon-tile icon="ic_clock.svg" content="re-alert"/>
+                      <v-icon>keyboard_arrow_right</v-icon>
+                    </div>
+                  </v-card-text>
+                </v-card>
+                <v-card class="card card--create-alert" color="grey lighten-2" flat width="240">
+                  <v-icon>add</v-icon>
+                </v-card>
+              </v-tab-item>
+            </v-tabs-items>
+          </v-container>
+        </section>
+      </section>
+    </v-slide-y-transition>
     <nav>
-      <div class="item-wrapper">
-        <div class="item">
-          <img class="item__image" src="https://picsum.photos/200" alt="Admin">
-          <span class="item__name item__name--bold">Admin</span>
-        </div>
-        <div class="item">
-          <img class="item__icon" src="/ic_home.svg" alt="Home">
-          <span class="item__name">Home</span>
-        </div>
-        <div class="item">
-          <img class="item__icon" src="/ic_event.svg" alt="Create an Event">
-          <span class="item__name">Create an Event</span>
-        </div>
-        <div class="item">
-          <img class="item__icon" src="/ic_settings.svg" alt="Settings">
-          <span class="item__name">Settings</span>
-        </div>
-        <div class="item">
-          <img class="item__icon" src="/ic_logout.svg" alt="Logout">
-          <span class="item__name">Logout</span>
-        </div>
+      <div class="item">
+        <img class="item__image" src="https://picsum.photos/200" alt="Admin">
+        <span class="item__name item__name--bold">Admin</span>
+      </div>
+      <div class="item">
+        <img class="item__icon" src="ic_home.svg" alt="Home">
+        <span class="item__name">Home</span>
+      </div>
+      <div class="item">
+        <img class="item__icon" src="ic_event.svg" alt="Create an Event">
+        <span class="item__name">Create an Event</span>
+      </div>
+      <div class="item">
+        <img class="item__icon" src="ic_settings.svg" alt="Settings">
+        <span class="item__name">Settings</span>
+      </div>
+      <div class="item">
+        <img class="item__icon" src="ic_logout.svg" alt="Logout">
+        <span class="item__name">Logout</span>
       </div>
     </nav>
   </section>
 </template>
 
 <script>
+import IconTile from '@/components/IconTile'
+
 export default {
+  components: {
+    IconTile
+  },
   data() {
     return {
+      tab: 'check-participants',
+      clickedEvent: null,
       events: [
         {
           name: 'JunctionX Seoul',
-          time: '10 May at 9:00 AM to 12 May at 18:00 PM, 2019',
-          place: 'Y-Valley'
-        },
-        {
-          name: 'JunctionX Seoul',
-          time: '10 May at 9:00 AM to 12 May at 18:00 PM, 2019',
-          place: 'Y-Valley'
-        },
-        {
-          name: 'JunctionX Seoul',
-          time: '10 May at 9:00 AM to 12 May at 18:00 PM, 2019',
-          place: 'Y-Valley'
-        },
-        {
-          name: 'JunctionX Seoul',
-          time: '10 May at 9:00 AM to 12 May at 18:00 PM, 2019',
-          place: 'Y-Valley'
-        },
-        {
-          name: 'JunctionX Seoul',
-          time: '10 May at 9:00 AM to 12 May at 18:00 PM, 2019',
-          place: 'Y-Valley'
-        },
-        {
-          name: 'JunctionX Seoul',
-          time: '10 May at 9:00 AM to 12 May at 18:00 PM, 2019',
-          place: 'Y-Valley'
-        },
-        {
-          name: 'JunctionX Seoul',
-          time: '10 May at 9:00 AM to 12 May at 18:00 PM, 2019',
-          place: 'Y-Valley'
-        },
-        {
-          name: 'JunctionX Seoul',
-          time: '10 May at 9:00 AM to 12 May at 18:00 PM, 2019',
-          place: 'Y-Valley'
-        },
-        {
-          name: 'JunctionX Seoul',
-          time: '10 May at 9:00 AM to 12 May at 18:00 PM, 2019',
-          place: 'Y-Valley'
-        },
-        {
-          name: 'JunctionX Seoul',
-          time: '10 May at 9:00 AM to 12 May at 18:00 PM, 2019',
-          place: 'Y-Valley'
-        },
-        {
-          name: 'JunctionX Seoul',
-          time: '10 May at 9:00 AM to 12 May at 18:00 PM, 2019',
-          place: 'Y-Valley'
-        },
-        {
-          name: 'JunctionX Seoul',
-          time: '10 May at 9:00 AM to 12 May at 18:00 PM, 2019',
-          place: 'Y-Valley'
+          time: '10 May at 9:00 AM to 12 May at 6:00 PM, 2019',
+          place: 'Y-Valley',
+          alerts: [
+            {
+              category: 'Announcement',
+              title: 'JunctionX is about to begin!',
+              content:
+                'When: May 10, 2019 at 8PM\nWhere: Y Valley\nSee you soon!'
+            },
+            {
+              category: 'Announcement',
+              title: 'JunctionX is about to begin!',
+              content:
+                'When: May 10, 2019 at 8PM\nWhere: Y Valley\nSee you soon!'
+            },
+            {
+              category: 'Announcement',
+              title: 'JunctionX is about to begin!',
+              content:
+                'When: May 10, 2019 at 8PM\nWhere: Y Valley\nSee you soon!'
+            }
+          ]
         }
       ]
     }
@@ -166,38 +188,101 @@ export default {
   justify-content: space-between;
 }
 
-.button {
+.window {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 120px;
+  bottom: 0;
+  background-color: #f8f8f8;
+}
+
+.window__header {
+  background-color: white;
+}
+
+.event {
+  display: flex;
+  margin: 32px 8px;
+  flex-direction: row;
+}
+
+.event__image {
+  width: 250px;
+  height: 160px;
+}
+
+.event__content {
+  display: flex;
+  margin: 0 32px;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.event__name {
+  margin-bottom: 16px;
+  color: #272727;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.event__time {
+  color: #272727;
+  font-size: 16px;
+}
+
+.event__place {
+  color: #272727;
+  font-size: 16px;
+}
+
+.tabs {
+  width: 50%;
+  margin-top: 36px;
+}
+
+.label {
+  display: inline-block;
+  padding: 4px 6px;
+  margin: 6px 0;
+  border: #4047f4 1px solid;
+  border-radius: 12px;
+  color: #4047f4;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+.card__title--mono {
+  color: #707070;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.card__content--mono {
+  color: #707070;
+  font-size: 16px;
+}
+
+.card--create-alert {
   display: flex;
   align-items: center;
-}
-
-.button__icon {
-  width: 20px;
-}
-
-.button__name {
-  margin: 0 8px;
-  color: #707070;
-  font-size: 14px;
+  justify-content: center;
 }
 
 nav {
-  position: absolute;
+  display: flex;
+  position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   width: 120px;
   background-color: #fff;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
-  z-index: 1;
-}
-
-.item-wrapper {
-  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  z-index: 1;
 }
 
 .item {
@@ -217,7 +302,7 @@ nav {
 
 .item__icon {
   display: block;
-  width: 28px;
+  height: 28px;
 }
 
 .item__name {
