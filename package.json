@@ -36,13 +36,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eventually-project/eventually-project.github.io.git"
+    "url": "git+https://github.com/eventually-project/client.git"
   },
   "author": "Seungjae Park <astro.psj@gmail.com>",
   "license": "UNLICENSED",
   "bugs": {
-    "url": "https://github.com/eventually-project/eventually-project.github.io/issues"
+    "url": "https://github.com/eventually-project/client/issues"
   },
-  "homepage": "https://github.com/eventually-project/eventually-project.github.io/#readme",
+  "homepage": "https://github.com/eventually-project/client#readme",
   "private": true
 }
