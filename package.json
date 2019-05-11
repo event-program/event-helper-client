@@ -1,7 +1,7 @@
 {
-  "name": "magpy",
+  "name": "eventually",
   "version": "1.0.0",
-  "description": "Magpy Client: An Event Manager Software",
+  "description": "Simple and Low Cost Event Operation Helper",
   "keywords": [
     "junction-x",
     "seoul",

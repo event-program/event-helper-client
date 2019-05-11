@@ -1,9 +1,8 @@
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
 
-const NAME = 'Magpy'
-const DESCRIPTION = 'Magpy: An Event Manager Software'
-const HOST_URL = 'https://magpy-project.github.io';
-const BASE_URL = '/client/';
+const NAME = 'Eventually'
+const DESCRIPTION = 'Simple and Low Cost Event Operation Helper'
+const BASE_URL = 'https://eventually-project.github.io';
 const THEME_COLOR = '#ff3f3d';
 const BACKGROUND_COLOR = '#fff';
 
@@ -27,9 +26,9 @@ module.exports = {
     name: NAME,
     short_name: NAME,
     description: DESCRIPTION,
-    scope: BASE_URL,
+    scope: '/',
     display: 'standalone',
-    start_url: `${BASE_URL}?utm_source=homescreen`,
+    start_url: '/?utm_source=homescreen',
     theme_color: THEME_COLOR,
     background_color: BACKGROUND_COLOR
   },
@@ -39,7 +38,7 @@ module.exports = {
     description: DESCRIPTION,
     nativeUI: true,
     appleStatusBarStyle: 'black-translucent',
-    ogHost: `${HOST_URL}${BASE_URL}`
+    ogHost: BASE_URL
   },
 
   oneSignal: {
@@ -53,8 +52,6 @@ module.exports = {
   },
 
   mode: 'universal',
-
-  router: { base: BASE_URL },
 
   build: {
     extractCSS: true,
