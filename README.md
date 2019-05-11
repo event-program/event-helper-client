@@ -1,10 +1,26 @@
-# event-helper-client
+# Magpy
 
-> My wicked Nuxt.js project
+<p align="center"><img src="./static/icon.png" width="256px" alt="Logo"></p>
+
+> Magpy Client: An Event Manager Software
+
+## Demo
+
+![Demo Screenshot](./screenshot.png)
+
+See [Demo](https://magpy-project.github.io/client/)
+
+## Installation
+
+- Clone the repo:
+
+```bash
+git clone https://github.com/magpy-project/client.git
+```
 
 ## Build Setup
 
-``` bash
+```bash
 # install dependencies
 $ npm install
 

@@ -1,12 +1,13 @@
 {
-  "name": "event-helper-client",
+  "name": "magpy",
   "version": "1.0.0",
-  "description": "A Project for Junction X Seoul 2019, API Hack Track",
+  "description": "Magpy Client: An Event Manager Software",
   "keywords": [
     "junction-x",
     "seoul",
     "2019",
-    "rakuten-rapid-api"
+    "rakuten-rapid-api",
+    "client"
   ],
   "dependencies": {
     "@nuxtjs/axios": "^5.4.1",
@@ -32,13 +33,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/.git"
+    "url": "git+https://github.com/magpy-project/client.git"
   },
   "author": "Seungjae Park <astro.psj@gmail.com>",
   "license": "UNLICENSED",
   "bugs": {
-    "url": "https://github.com/issues"
+    "url": "https://github.com/magpy-project/client/issues"
   },
-  "homepage": "https://github.com/#readme",
+  "homepage": "https://github.com/magpy-project/client/#readme",
   "private": true
 }

@@ -1,9 +1,9 @@
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
 
-const NAME = ''
-const DESCRIPTION = ''
-const HOST_URL = 'http://';
-const BASE_URL = '/';
+const NAME = 'Magpy'
+const DESCRIPTION = 'Magpy: An Event Manager Software'
+const HOST_URL = 'https://magpy-project.github.io';
+const BASE_URL = '/client/';
 const THEME_COLOR = '';
 const BACKGROUND_COLOR = '';
 
