@@ -41,6 +41,16 @@ module.exports = {
     ogHost: `${HOST_URL}${BASE_URL}`
   },
 
+  oneSignal: {
+    init: {
+      appId: '4652ac77-f8b2-4a88-b531-158629b54d35',
+      allowLocalhostAsSecureOrigin: true,
+      welcomeNotification: {
+          disable: true
+      }
+    }
+  },
+
   mode: 'universal',
 
   router: { base: BASE_URL },
