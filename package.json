@@ -36,13 +36,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/magpy-project/client.git"
+    "url": "git+https://github.com/eventually-project/eventually-project.github.io.git"
   },
   "author": "Seungjae Park <astro.psj@gmail.com>",
   "license": "UNLICENSED",
   "bugs": {
-    "url": "https://github.com/magpy-project/client/issues"
+    "url": "https://github.com/eventually-project/eventually-project.github.io/issues"
   },
-  "homepage": "https://github.com/magpy-project/client/#readme",
+  "homepage": "https://github.com/eventually-project/eventually-project.github.io/#readme",
   "private": true
 }
