@@ -19,6 +19,7 @@ module.exports = {
 
   modules: [
     '@nuxtjs/axios', // Doc: https://axios.nuxtjs.org/usage
+    '@nuxtjs/onesignal',
     '@nuxtjs/pwa'
   ],
 
