@@ -1,26 +1,9 @@
 <template>
   <section>
     <v-container>
-      <h1 class="title">Upcoming Events</h1>
+      <h1 class="title">Events</h1>
       <section class="cards">
-        <v-card v-for="event in events.slice(0, 4)" :key="event.id" class="card" width="240">
-          <v-img :src="event.image" alt="Event Image"/>
-          <v-card-text>
-            <p class="card__title">{{ event.name }}</p>
-            <p class="card__content">{{ event.time }}</p>
-            <div class="card__action">
-              <icon-tile icon="ic_place.svg" :content="event.place"/>
-              <v-btn icon @click="clickedEvent = event">
-                <v-icon>keyboard_arrow_right</v-icon>
-              </v-btn>
-            </div>
-          </v-card-text>
-        </v-card>
-      </section>
-      <br>
-      <h1 class="title">Past Events</h1>
-      <section class="cards">
-        <v-card v-for="event in events.slice(4)" :key="event.id" class="card" width="240">
+        <v-card v-for="event in events" :key="event.id" class="card" width="240">
           <v-img :src="event.image" alt="Event Image"/>
           <v-card-text>
             <p class="card__title">{{ event.name }}</p>
@@ -262,10 +245,6 @@
       <div class="item">
         <img class="item__icon" src="ic_event.svg" alt="Create an Event">
         <span class="item__name">Create an Event</span>
-      </div>
-      <div class="item">
-        <img class="item__icon" src="ic_settings.svg" alt="Settings">
-        <span class="item__name">Settings</span>
       </div>
       <div class="item">
         <img class="item__icon" src="ic_logout.svg" alt="Logout">
