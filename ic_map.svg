@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="30.336" height="29.514" viewBox="0 0 30.336 29.514">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #292929;
+        stroke-linejoin: round;
+        stroke-width: 1.5px;
+      }
+    </style>
+  </defs>
+  <g id="map" transform="translate(-0.403 5.103) rotate(-13)">
+    <path class="cls-1" d="M1,6.364V23.818l7.636-4.364,8.727,4.364L25,19.455V2L17.364,6.364,8.636,2Z"/>
+    <line class="cls-1" y2="17.455" transform="translate(8.636 2)"/>
+    <line class="cls-1" y2="17.455" transform="translate(17.364 6.364)"/>
+  </g>
+</svg>
