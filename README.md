@@ -1,4 +1,4 @@
-# Magpy
+# Eventually
 
 <p align="center"><img src="./static/icon.png" width="256px" alt="Logo"></p>
 
