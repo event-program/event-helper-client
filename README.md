@@ -2,20 +2,20 @@
 
 <p align="center"><img src="./static/icon.png" width="256px" alt="Logo"></p>
 
-> Magpy Client: An Event Manager Software
+> Simple and Low Cost Event Operation Helper
 
 ## Demo
 
 ![Demo Screenshot](./screenshot.png)
 
-See [Demo](https://magpy-project.github.io/client/)
+See [Demo](https://eventually-project.github.io/client/)
 
 ## Installation
 
 - Clone the repo:
 
 ```bash
-git clone https://github.com/magpy-project/client.git
+git clone https://github.com/eventually-project/client.git
 ```
 
 ## Build Setup
