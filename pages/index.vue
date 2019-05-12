@@ -208,7 +208,7 @@
               <v-data-table
                 v-model="selectedParticipants"
                 :headers="headers"
-                :items="desserts"
+                :items="participants"
                 :search="search"
                 hide-actions
                 select-all
@@ -218,7 +218,7 @@
                     <v-checkbox v-model="props.selected" primary hide-details></v-checkbox>
                   </td>
                   <td>{{ props.item.name }}</td>
-                  <td>{{ props.item.calories }}</td>
+                  <td>{{ props.item.phone }}</td>
                 </template>
                 <template v-slot:no-results>
                   <v-alert
@@ -255,6 +255,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 import IconTile from '@/components/IconTile'
 
 export default {
@@ -276,10 +278,12 @@ export default {
       endDate: null,
       endTimePickerVisible: false,
       endTime: null,
+      search: '',
       headers: [
         { text: 'Name', value: 'name' },
         { text: 'Phone', value: 'phone' }
       ],
+      participants: [],
       selectedParticipants: [],
       events: [
         {
@@ -310,7 +314,13 @@ export default {
         }
       ]
     }
-  }
+  },
+  // async created() {
+  //   this.participants = await axios.get(
+  //     'http://myserver.aaronroh.org:8000/participants/?event_name=%EC%A0%95%EC%85%98X'
+  //   )
+  //   console.log(this.participants)
+  // }
 }
 </script>
 

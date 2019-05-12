@@ -6,9 +6,9 @@
     <section class="form-wrapper">
       <h2 class="form__title">Login</h2>
       <nuxt-link class="forgot-pw-text" to="forgot">Forgot your password</nuxt-link>
-      <v-text-field color="white" dark label="ID"/>
-      <v-text-field color="white" dark label="Password"/>
-      <v-btn color="#ff3f3d" dark depressed large>Login</v-btn>
+      <v-text-field color="white" dark label="ID" value="Admin"/>
+      <v-text-field color="white" dark label="Password" type="password" value="1q2w3e4r!"/>
+      <v-btn color="#ff3f3d" dark depressed large href="./">Login</v-btn>
       <v-btn color="#141414" dark depressed large>Signup</v-btn>
     </section>
     <nav>
